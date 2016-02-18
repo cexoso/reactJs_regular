@@ -1,12 +1,28 @@
 var gulp = require('gulp');
 var react = require('gulp-react');
 var chokidar = require('chokidar');
-var rimraf = require("gulp-rimraf");
-var path = require('path');
-var Promise = require("bluebird");
 var rename = require('gulp-rename');
 var inject = require('gulp-inject');
 var browserSync = require("browser-sync");
+var webpackStream=require("webpack-stream");
+gulp.task("test",function(){
+  var webpackConfig=require('./webpack.config.js');
+  console.log(webpackConfig)
+  return gulp.src("app/js/app.react.js")
+    .pipe(webpackStream(webpackConfig))
+    .pipe(gulp.dest('app/js'));
+});
+return ;
+gulp.task("webpack",function(){
+  var webpackConfig=require('./webpack.config.js');
+  function pack(f, p) {
+    return gulp.src("app/js/app.js")
+      .pipe(webpackStream(webpackConfig))
+      .pipe(gulp.dest('app/js/bundle.js'));
+  }
+  chokidar.watch("app/js/**/*.react.js")
+    .on('change',pack);
+});
 gulp.task('react', function() {
   function compile(f, p) {
     console.log(Date.now());
@@ -32,7 +48,8 @@ gulp.task("server", function() {
 
 }); //task server end
 
-gulp.task('default', ['react', 'injectDev', 'injectDev:watch', 'server', 'server:watch']);
+// gulp.task('default', ['react', 'injectDev', 'injectDev:watch', 'server', 'server:watch']);
+gulp.task('default', ['injectDev:watch', 'server']);
 process.on('uncaughtException', function(err) {
   console.log(err.stack);
 });

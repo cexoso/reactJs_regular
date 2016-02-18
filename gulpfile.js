@@ -5,22 +5,14 @@ var rename = require('gulp-rename');
 var inject = require('gulp-inject');
 var browserSync = require("browser-sync");
 var webpackStream=require("webpack-stream");
-gulp.task("test",function(){
-  var webpackConfig=require('./webpack.config.js');
-  console.log(webpackConfig)
-  return gulp.src("app/js/app.react.js")
-    .pipe(webpackStream(webpackConfig))
-    .pipe(gulp.dest('app/js'));
-});
-return ;
 gulp.task("webpack",function(){
   var webpackConfig=require('./webpack.config.js');
   function pack(f, p) {
-    return gulp.src("app/js/app.js")
+    return gulp.src("app/js/app.jsx")
       .pipe(webpackStream(webpackConfig))
-      .pipe(gulp.dest('app/js/bundle.js'));
+      .pipe(gulp.dest('app/js'));
   }
-  chokidar.watch("app/js/**/*.react.js")
+  chokidar.watch("app/js/**/*.jsx")
     .on('change',pack);
 });
 gulp.task('react', function() {
@@ -49,38 +41,11 @@ gulp.task("server", function() {
 }); //task server end
 
 // gulp.task('default', ['react', 'injectDev', 'injectDev:watch', 'server', 'server:watch']);
-gulp.task('default', ['injectDev:watch', 'server']);
+gulp.task('default', ['server:watch', 'server',"webpack"]);
 process.on('uncaughtException', function(err) {
   console.log(err.stack);
 });
 gulp.task('server:watch', function() {
-  chokidar.watch('app/lib/**/*.js')
+  chokidar.watch('app/js/bundle.js')
     .on('change', browserSync.reload)
-});
-var injectDev = (function() {
-  var t = null;
-  var timeout = 50;
-  return function() {
-    if (t) {
-      clearTimeout(t);
-    }
-    t = setTimeout(function() {
-      gulp.src('indexTpl.html')
-        .pipe(inject(gulp.src('app/lib/**/*.js', {
-          read: false
-        }), {
-          name: 'inject',
-          addRootSlash: true,
-          ignorePath: ['bower_components', 'app']
-        }))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest('./'));
-    }, timeout);
-  }
-})();
-gulp.task('injectDev', injectDev);
-gulp.task('injectDev:watch', function() {
-  chokidar.watch('app/lib/**/*.js')
-    .on('add', injectDev)
-    .on('remove', injectDev)
 });

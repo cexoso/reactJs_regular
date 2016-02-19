@@ -1,8 +1,8 @@
 'use strict';
 const React=require("react");
 const ReactDOM=require("react-dom");
-const Clock=require("./components/Clock");
+const App=require("./components/App");
 ReactDOM.render(
-  <Clock />,
+  <App />,
   document.getElementById('container')
 );

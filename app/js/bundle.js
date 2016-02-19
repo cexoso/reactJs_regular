@@ -48,8 +48,8 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var Clock = __webpack_require__(159);
-	ReactDOM.render(React.createElement(Clock, null), document.getElementById('container'));
+	var App = __webpack_require__(159);
+	ReactDOM.render(React.createElement(App, null), document.getElementById('container'));
 
 /***/ },
 /* 1 */
@@ -19659,18 +19659,17 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Clock = React.createClass({
-	  displayName: "Clock",
+	var setIntervalMixin = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Picture\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var App = React.createClass({
+	  displayName: "App",
 
+	  componentDidMount: function componentDidMount() {},
+	  getInitialState: function getInitialState() {},
 	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      null,
-	      "123"
-	    );
+	    return React.createElement(Picture, { src: "resource/p1.jpg" });
 	  }
 	});
-	module.exports = Clock;
+	module.exports = App;
 
 /***/ }
 /******/ ]);

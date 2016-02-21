@@ -1,15 +1,16 @@
 'use strict';
 const React = require("react");
-
-var Clock = React.createClass({
+const cn=require('./text.css');
+var Picture = React.createClass({
   componentDidMount:function(){
+    console.log(this.props.src)
   },
-  getInitialState: function() {
-  },
+  // getInitialState: function() {
+  // },
   render: function() {
     return (
-
+      <img className={cn.q} src={this.props.src}/>
     );
   }
 });
-module.exports = Clock;
+module.exports = Picture;

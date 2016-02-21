@@ -1,34 +1,28 @@
 var gulp = require('gulp');
-var react = require('gulp-react');
 var chokidar = require('chokidar');
-var rename = require('gulp-rename');
-var inject = require('gulp-inject');
 var browserSync = require("browser-sync");
-var webpackStream=require("webpack-stream");
-gulp.task("webpack",function(){
-  var webpackConfig=require('./webpack.config.js');
-  function pack(f, p) {
-    return gulp.src("app/js/app.jsx")
-      .pipe(webpackStream(webpackConfig))
-      .pipe(gulp.dest('app/js'));
-  }
-  chokidar.watch("app/js/**/*.jsx")
-    .on('change',pack);
-});
-gulp.task('react', function() {
-  function compile(f, p) {
-    console.log(Date.now());
-    return gulp.src(f)
-      .pipe(react())
-      .pipe(gulp.dest('app/lib'))
-  }
-  chokidar.watch('app/libJsx/**/*.jsx')
-    .on('change', compile)
+var webpack = require("webpack");
+gulp.task("webpack", function() {
+  var config = require("./webpack.config.js");
+  var compiler = webpack(config);
+  compiler.watch({ // watch options:
+    aggregateTimeout: 300, // wait so long for more changes
+    poll: true
+  }, function(err, stats) {
+    if (err) {
+      console.log("error:"+err);
+    }
+
+    var startTime=stats.startTime;
+    var endTime=stats.endTime;
+    var hash=stats.hash;
+    console.log("time:"+(endTime-startTime)+"ms."+"\nhash:"+hash);
+  });
 });
 gulp.task("server", function() {
   browserSync.init({
     server: {
-      baseDir: ["app", "bower_components"],
+      baseDir: ["app"],
       middleware: [function(req, res, next) {
         next();
       }]
@@ -37,15 +31,12 @@ gulp.task("server", function() {
     open: false,
     notify: false
   }); //browserSync.init end
-
 }); //task server end
-
-// gulp.task('default', ['react', 'injectDev', 'injectDev:watch', 'server', 'server:watch']);
-gulp.task('default', ['server:watch', 'server',"webpack"]);
-process.on('uncaughtException', function(err) {
-  console.log(err.stack);
-});
 gulp.task('server:watch', function() {
   chokidar.watch('app/js/bundle.js')
     .on('change', browserSync.reload)
+});
+gulp.task('default', ['server','server:watch',"webpack"]);
+process.on('uncaughtException', function(err) {
+  console.log(err.stack);
 });

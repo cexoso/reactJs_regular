@@ -19667,11 +19667,7 @@
 	  // getInitialState: function() {
 	  // },
 	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { style: { "height": "800px", "width": "533px" } },
-	      React.createElement(Picture, { className: "", row: "1", col: "2", src: "resource/p1.jpg" })
-	    );
+	    return React.createElement(Picture, { src: "resource/p1.jpg" });
 	  }
 	});
 	module.exports = App;
@@ -19684,40 +19680,32 @@
 
 	var React = __webpack_require__(1);
 	var cn = __webpack_require__(161);
+	var cns = __webpack_require__(165);
 
 	var Picture = React.createClass({
-	  displayName: "Picture",
+	  displayName: 'Picture',
 
 	  componentDidMount: function componentDidMount() {
 	    console.log(this.props.src);
 	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      src: this.props.src
-	    };
-	  },
+	  // getInitialState: function() {
+	  // },
 	  render: function render() {
-	    console.log(cn);
-	    var style = {
-	      "backgroundImage": "url(" + this.state.src + ")"
-	    };
 	    return React.createElement(
-	      "div",
-	      { className: cn.container },
-	      React.createElement("div", { className: cn.img + " " + cn.i1, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i2, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i3, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i4, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i5, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i6, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i7, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i8, style: style }),
-	      React.createElement("div", { className: cn.img + " " + cn.i9, style: style })
-	    )
-	    // <div className={cn["container"+this.props.col]}>
-	    //123
-	    // </div>
-	    ;
+	      'div',
+	      null,
+	      React.createElement('img', { className: cn.q, src: this.props.src }),
+	      React.createElement(
+	        'div',
+	        { className: cns.q },
+	        '123',
+	        React.createElement(
+	          'div',
+	          { className: cns.c },
+	          'qwewqe'
+	        )
+	      )
+	    );
 	  }
 	});
 	module.exports = Picture;
@@ -19738,8 +19726,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./Picture.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./Picture.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./text.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./text.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -19757,21 +19745,11 @@
 
 
 	// module
-	exports.push([module.id, ".kk8KrYlMYe7O9MxnI6gxD {\n  height: 100%;\n  font-size: 0; }\n  .kk8KrYlMYe7O9MxnI6gxD ._3gyNdCDBboVbneYFsiHgqF {\n    background-repeat: no-repeat;\n    height: 33.333%;\n    width: 33.333%;\n    display: inline-block; }\n  .kk8KrYlMYe7O9MxnI6gxD .eN1HXrhyW5kCjVv4N6lwv {\n    background-position: 0 0; }\n  .kk8KrYlMYe7O9MxnI6gxD ._3Deu8PuLusoy4aAuCbqbeZ {\n    background-position: 50% 0; }\n  .kk8KrYlMYe7O9MxnI6gxD .XmEnFULuVRcKSUkcgdvWl {\n    background-position: 100% 0; }\n  .kk8KrYlMYe7O9MxnI6gxD ._3J8jKxYrkse6LKpGhU-DCB {\n    background-position: 0 50%; }\n  .kk8KrYlMYe7O9MxnI6gxD .r39PJZdABTcki4KtX1KM2 {\n    background-position: 50% 50%; }\n  .kk8KrYlMYe7O9MxnI6gxD ._1x2vGLmuDrgVPgedms6ed2 {\n    background-position: 100% 50%; }\n  .kk8KrYlMYe7O9MxnI6gxD ._2j565EmpFBBbybal2HB05N {\n    background-position: 0 100%; }\n  .kk8KrYlMYe7O9MxnI6gxD .rx-sYX2rN4wIQr3k67Bq6 {\n    background-position: 50% 100%; }\n  .kk8KrYlMYe7O9MxnI6gxD ._1qRWQZTWglI9NCWEo-Mxn4 {\n    background-position: 100% 100%; }\n", ""]);
+	exports.push([module.id, ".dxMd7EMhtKB4seEPYPzw{\r\n  border:1px red solid;\r\n}\r\n", ""]);
 
 	// exports
 	exports.locals = {
-		"container": "kk8KrYlMYe7O9MxnI6gxD",
-		"img": "_3gyNdCDBboVbneYFsiHgqF",
-		"i1": "eN1HXrhyW5kCjVv4N6lwv",
-		"i2": "_3Deu8PuLusoy4aAuCbqbeZ",
-		"i3": "XmEnFULuVRcKSUkcgdvWl",
-		"i4": "_3J8jKxYrkse6LKpGhU-DCB",
-		"i5": "r39PJZdABTcki4KtX1KM2",
-		"i6": "_1x2vGLmuDrgVPgedms6ed2",
-		"i7": "_2j565EmpFBBbybal2HB05N",
-		"i8": "rx-sYX2rN4wIQr3k67Bq6",
-		"i9": "_1qRWQZTWglI9NCWEo-Mxn4"
+		"q": "dxMd7EMhtKB4seEPYPzw"
 	};
 
 /***/ },
@@ -20083,6 +20061,50 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(166);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(164)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./text.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./text.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(163)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._2LHsPesa1dC44y2YEI4h_Z {\n  color: red; }\n  ._2LHsPesa1dC44y2YEI4h_Z ._1ul5b4ljNkVUOSQu_B0CAj {\n    color: blue; }\n    ._2LHsPesa1dC44y2YEI4h_Z ._1ul5b4ljNkVUOSQu_B0CAj ._2IgqGih_5_-t10rkjO81xe {\n      color: black; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"q": "_2LHsPesa1dC44y2YEI4h_Z",
+		"c": "_1ul5b4ljNkVUOSQu_B0CAj",
+		"a": "_2IgqGih_5_-t10rkjO81xe"
+	};
 
 /***/ }
 /******/ ]);

@@ -1,0 +1,37 @@
+ :local .container {
+  height: 100%;
+  font-size: 0;
+  .img {
+    background-repeat: no-repeat;
+    height: 33.333%;
+    width: 33.333%;
+    display: inline-block;
+  }
+  .i1 {
+    background-position:0 0;
+  }
+  .i2 {
+    background-position:50% 0;
+  }
+  .i3 {
+    background-position:100% 0;
+  }
+  .i4 {
+    background-position:0 50%;
+  }
+  .i5 {
+    background-position:50% 50%;
+  }
+  .i6 {
+    background-position:100% 50%;
+  }
+  .i7 {
+    background-position:0 100%;
+  }
+  .i8 {
+    background-position:50% 100%;
+  }
+  .i9 {
+    background-position:100% 100%;
+  }
+}

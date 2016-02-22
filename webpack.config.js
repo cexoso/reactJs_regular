@@ -4,6 +4,8 @@ module.exports = {
       test: /\.jsx$/,loader: "babel-loader",query: {presets: ['react', 'es2015']}
     },{
       test: /\.css$/,loader: "style-loader!css-loader"
+    },{
+      test: /\.scss$/,loader: "style-loader!css-loader!sass-loader"
     }]
   },
   entry: "./app/js/app.jsx",

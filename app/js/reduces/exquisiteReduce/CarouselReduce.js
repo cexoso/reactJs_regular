@@ -1,3 +1,4 @@
+// import {CAROUSEL_CHANGE} from "actions/carouselAction";
 function _(state = {}, action) {
   switch (action.type) {
     case "___":

@@ -3,8 +3,7 @@ import Carousel from '../components/Carousel';
 import {change} from '../actions/carouselAction';
 function mapStateToProps(state) {
   console.log(`Carousel map ${JSON.stringify(state)}`)
-  
-  return {arr};
+  return state;
 }
 function mapDispatchToProps(dispatch) {
   return {

@@ -20,7 +20,7 @@ class Carousel extends Component {
   componentDidMount() {
     var next=this.props.next;
     this.props.setInterval(function(){
-      next();
+    //   next();
     },2000);
   }
   render() {

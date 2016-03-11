@@ -1,0 +1,18 @@
+:local .c_footer {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-content:stretch;
+  align-items:stretch;
+  height:100%;
+  .item {
+    align-self:center;
+    .link{
+      text-decoration: none;
+      color:#ccc;
+      &.active{
+        color:red;
+      }
+    }
+  }
+}

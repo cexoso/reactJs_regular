@@ -1,5 +1,6 @@
 var webpack = require("webpack");
 var path = require("path");
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 module.exports = {
     module: {
         loaders: [{
@@ -15,27 +16,23 @@ module.exports = {
         }]
     },
     entry: {
-        "./app/js/app.jsx": [
+        app: [
             'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
             'webpack/hot/dev-server', // "only" prevents reload on syntax errors
             "./app/js/app.jsx"
-        ]
+        ],
+        vendor: ["react", "react-dom", "react-router","react-redux","redux"]
     },
     output: {
-        path: path.join(__dirname, '/app/js'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        path: path.join(__dirname, '/app/bundle'),
+        filename: "[name].bundle.js",
+        publicPath: '/bundle'
     },
     resolve: {
-        alias:{
-            actions:path.join(__dirname, "/app/js/actions"),
-            components:path.join(__dirname,"/app/js/components"),
-            container:path.join(__dirname,"/app/js/container"),
-            hoc:path.join(__dirname,"/app/js/hoc"),
-            reduces:path.join(__dirname,"/app/js/reduces")
-        },
-        // you can now require('file') instead of require('file.coffee')
-        extensions: ['', '.js', '.json', '.jsx']
+        alias: {
+            "css": path.join(__dirname, 'app/css')
+        }
+        // ,extensions: ['', '.js', '.jsx']
     },
     compiler: {
         stats: {
@@ -43,7 +40,18 @@ module.exports = {
         }
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    resolve:[]
+        new webpack.HotModuleReplacementPlugin(),
+        new CommonsChunkPlugin({
+            name: "vendor",
+            minChunks: Infinity
+        })
+        // ,
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: false
+        // })
+        // ,
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': '"production"'
+        // }),
+    ]
 };

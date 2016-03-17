@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {D} from '../actions/exquisiteAction';
-import Carousel from '../containers/Carousel';
+import Carousel from './Carousel';
 import React, {Component} from 'react';
 
 class Exquisite extends Component {
@@ -8,7 +8,6 @@ class Exquisite extends Component {
         const imgs = ["resource/mm1.jpg", "resource/mm2.jpg"];
         var t = this.props.exquisite;
         return (
-
             <div onClick={this.props.D}>
                 <span style={{
                     color: "red"
